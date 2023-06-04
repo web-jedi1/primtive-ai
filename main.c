@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 int dat[5][2] = {
     {0, 0},
     {1, 2},
@@ -46,10 +45,12 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-    char *iterc = argv[1];
-    int iterations = atoi(iterc);
+    //char *iterc = argv[1];
+    //int iterations = atoi(iterc);
 
-    printf("\n---- running model for %d iterations ----\n", iterations);
+    int iterations = atoi(argv[1]);
+
+    printf("\n---- running model for %d iterations ----\n\n", iterations);
 
     // srand(time(0));
     srand(69);
@@ -58,6 +59,11 @@ int main (int argc, char *argv[]) {
     float w = rand_float()*10.0f; // the models single parameter
 
     for (size_t i = 0; i < iterations; i++) {
+
+        // COMPUTE OPTIMUM OF COST FUNCTION
+        // change to actually compute true derivative instead of finite diff
+        // what happens of cost function has multiple optimal solutions?
+
         float dcost = (cost(w + mu) - cost(w))/mu;  // compute finite difference, change this to take actual derivative of cost func.
         //printf("dcost: %f\n", dcost);
         //printf("[-] MSE pre opt: %f\n", cost(w)); // cost function before finite difference update (lim->0)
