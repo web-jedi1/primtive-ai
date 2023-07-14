@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 // and gate
 int data[4][3] = {
     {0, 0, 0},
@@ -22,6 +21,7 @@ int data[4][3] = {
     // in, in, out
 };
 */
+
 #define size sizeof(data)/sizeof(data[0])
 #define rand_float (float) rand() / (float) RAND_MAX 
 
