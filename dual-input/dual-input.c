@@ -51,6 +51,7 @@ float cost (float w1, float w2, float b) {
 }
 
 void printModel (float w1, float w2, float b) {
+    // hugely inefficient way to watch training process
 
     printf("\n--------------------------------------\n\n");
 
