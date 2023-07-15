@@ -45,6 +45,7 @@ Matrix matrix_alloc (size_t rows, size_t collumns) {
 }
 
 void matrix_randomize (Matrix m) {
+    /*initializes each value in n*m matrix with random floats*/
     for (size_t i = 0; i < m.rows; i++) {
         for (size_t j = 0; j < m.collumns; j++) {
             ITERATOR(m, i, j) = random_float();    
@@ -72,16 +73,28 @@ void matrix_print (Matrix m) {
             } else {
                 printf("%f ", ITERATOR(m, i, j));
             }
-            
         }
         printf("]\n");
     }
 }
 
 void matrix_dotproduct (Matrix a, Matrix b, Matrix c) {
-    (void) a;
-    (void) b;
-    (void) c;
+    /*
+        multiplies matrix a with matrix b, stores resulting matrix in c.
+    */
+
+    assert(a.collumns == b.rows);
+    assert(a.rows == c.rows);
+    assert(b.collumns == c.collumns);
+
+    for (size_t i = 0; i < c.rows; i++) {
+        for (size_t j = 0; j < c.collumns; j++) {
+            ITERATOR(c, i, j) = 0; // initialize destination value
+            for (size_t k = 0; k < a.collumns; k++) {
+                ITERATOR(c, i, j) += ITERATOR(a, i, k) * ITERATOR(b, k, j);
+            }      
+        }
+    }
 }
 
 void matrix_sum (Matrix a, Matrix b) {
